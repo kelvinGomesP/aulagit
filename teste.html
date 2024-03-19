@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Random Cat Images</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+  }
+  #cat-image {
+    max-width: 100%;
+    height: auto;
+    margin-top: 20px;
+  }
+</style>
+</head>
+<body>
+  <h1>Imagens de gatinhos</h1>
+  <img id="cat-image" src="" alt="Random Cat Image">
+  
+  <script>
+    // Função para carregar uma imagem de gato aleatória
+    function carregarImagemGato() {
+      fetch('https://api.thecatapi.com/v1/images/search')
+        .then(response => response.json())
+        .then(data => {
+          const imagemGato = data[0].url;
+          document.getElementById('cat-image').src = imagemGato;
+        })
+        .catch(error => {
+          console.error('Erro ao obter imagem de gato:', error);
+        });
+    }
+
+    // Chame a função para carregar uma imagem de gato quando a página for carregada
+    carregarImagemGato();
+  </script>
+</body>
+</html>
+
